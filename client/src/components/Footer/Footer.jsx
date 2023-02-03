@@ -28,6 +28,8 @@ function Footer() {
             animi libero impedit. Dicta aspernatur veniam totam aut dolores
             ducimus quia mollitia reiciendis.
           </span>
+        </div>
+        <div className="item">
           <h2>Contact</h2>
           <span>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
@@ -40,7 +42,7 @@ function Footer() {
       <div className="bottom">
         <div className="left">
           <div className="logo">Fake Store</div>
-          <div className="cpyright">Copyright 2023</div>
+          <div className="copyright">Copyright 2023</div>
         </div>
         <div className="right">
           <img src="/img/payment.png" alt="Peyment" />
