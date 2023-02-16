@@ -49,9 +49,9 @@ function FeaturedProducts({ type }) {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          process.env.REACT_APP_API_URL+"/products",
+          JSON.stringify(import.meta.VITE_APP_URL) + "/products",
           {
-            Authorization: "bearer" + process.env.REACT_APP_API_TOKEN,
+            Authorization: "bearer" + JSON.stringify(import.meta.VITE_APP_TOKEN),
           }
         );
         console.log(data);
