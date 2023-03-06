@@ -45,13 +45,18 @@ function FeaturedProducts({ type }) {
 
   const [products, setProducts] = useState([]);
 
+  const teste = "http://localhost:1337/api";
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          JSON.stringify(import.meta.VITE_APP_URL) + "/products",
+          (import.meta.env.VITE_APP_URL) + "/products",
           {
-            Authorization: "bearer" + JSON.stringify(import.meta.VITE_APP_TOKEN),
+            headers: {
+              Authorization:
+                "bearer" +  import.meta.env.VITE_APP_TOKEN,
+            },
           }
         );
         console.log(data);
@@ -78,6 +83,7 @@ function FeaturedProducts({ type }) {
           <Card item={item} key={item.id} />
         ))}
       </div>
+      {/* {console.log("TESTE: ", (import.meta.env.VITE_APP_TOKEN))} */}
     </div>
   );
 }
