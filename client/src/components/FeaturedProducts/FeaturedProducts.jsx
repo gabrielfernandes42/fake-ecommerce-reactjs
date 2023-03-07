@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import "./FeaturedProducts.scss";
 import axios from "axios";
+import { json } from "react-router-dom";
 
 function FeaturedProducts({ type }) {
   const data = [
@@ -45,17 +46,14 @@ function FeaturedProducts({ type }) {
 
   const [products, setProducts] = useState([]);
 
-  const teste = "http://localhost:1337/api";
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          (import.meta.env.VITE_APP_URL) + "/products",
+          import.meta.env.VITE_APP_URL + "/products",
           {
             headers: {
-              Authorization:
-                "bearer" +  import.meta.env.VITE_APP_TOKEN,
+              Authorization: "Bearer " + import.meta.env.VITE_APP_TOKEN,
             },
           }
         );
@@ -83,7 +81,6 @@ function FeaturedProducts({ type }) {
           <Card item={item} key={item.id} />
         ))}
       </div>
-      {/* {console.log("TESTE: ", (import.meta.env.VITE_APP_TOKEN))} */}
     </div>
   );
 }
