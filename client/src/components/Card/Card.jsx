@@ -7,14 +7,14 @@ function Card({ item }) {
     <Link className="link" to={`/product/${item.id}`}>
       <div className="card">
         <div className="image">
-          {item.isNew && <span>New keyboard</span>}
-          <img src={item.img} alt="" className="mainImg" />
-          <img src={item.img2} alt="" className="secondImg" />
+          {item?.attributes.isNew && <span>New keyboard</span>}
+          <img src={import.meta.env.VITE_APP_UP__URL + item.attributes?.img?.data.attributes.url} alt="" className="mainImg" />
+          <img src={import.meta.env.VITE_APP_UP__URL + item.attributes?.img2?.data.attributes.url} alt="" className="secondImg" />
         </div>
-        <h3>{item.title}</h3>
+        <h3>{item?.attributes.title}</h3>
         <div className="prices">
-          <h4>${item.oldPrice}</h4>
-          <h4>${item.price}</h4>
+          <h4>${item.OldPrice || item?.attributes.price + 20}</h4>
+          <h4>${item.attributes.price}</h4>
         </div>
       </div>
     </Link>

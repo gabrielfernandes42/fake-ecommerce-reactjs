@@ -5,65 +5,28 @@ import axios from "axios";
 import { json } from "react-router-dom";
 
 function FeaturedProducts({ type }) {
-  const data = [
-    {
-      id: 1,
-      img: "https://images.unsplash.com/photo-1627509493009-9249a2ad2459?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      img2: "https://images.unsplash.com/photo-1627510444490-95637baaf6cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      title: "New Keyboard",
-      isNew: true,
-      oldPrice: 19,
-      price: 12,
-    },
-    {
-      id: 2,
-      img: "https://images.unsplash.com/photo-1627509493009-9249a2ad2459?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      img2: "https://images.unsplash.com/photo-1627510444490-95637baaf6cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      title: "New Keyboard",
-      isNew: true,
-      oldPrice: 19,
-      price: 12,
-    },
-    {
-      id: 3,
-      img: "https://images.unsplash.com/photo-1627509493009-9249a2ad2459?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      img2: "https://images.unsplash.com/photo-1627510444490-95637baaf6cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      title: "New Keyboard",
-      isNew: false,
-      oldPrice: 19,
-      price: 12,
-    },
-    {
-      id: 4,
-      img: "https://images.unsplash.com/photo-1627509493009-9249a2ad2459?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      img2: "https://images.unsplash.com/photo-1627510444490-95637baaf6cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      title: "New Keyboard",
-      isNew: false,
-      oldPrice: 19,
-      price: 12,
-    },
-  ];
-
-  const [products, setProducts] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await axios.get(
-          import.meta.env.VITE_APP_URL + "/products",
+        const res = await axios.get(
+          import.meta.env.VITE_APP_URL + "/products?populate=*",
           {
             headers: {
               Authorization: "Bearer " + import.meta.env.VITE_APP_TOKEN,
             },
           }
         );
-        console.log(data);
+        setData(res.data.data)
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
   }, []);
+
+  console.log(data)
 
   return (
     <div className="featuredProducts">
